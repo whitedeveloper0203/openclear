@@ -1,0 +1,13 @@
+version: 0.0
+
+os: linux
+
+files:
+  - source: /
+    destination: /var/www/html/CDP
+
+hooks:
+  BeforeInstall:
+    - location: scripts/beforeInstall.sh
+  AfterInstall:
+    - location: scripts/afterInstall.sh

@@ -1,0 +1,25 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      php: 7.3
+    commands:
+      - |
+        export DEBIAN_FRONTEND=noninteractive
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Installing composer deps
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      # Do you need to do this? In many cases phpunit will use sqlite or similar to avoid the need for a real DB.
+      # If you don't need it delete it
+      # - /usr/bin/mysql  -u root -e "GRANT ALL ON *.* TO 'test'@'localhost' IDENTIFIED BY '' WITH GRANT OPTION"
+      # - mysqladmin -u test create test
+      # - ./vendor/bin/phpunit
+artifacts:
+  files:
+    - '**/*'
