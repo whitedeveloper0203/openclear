@@ -1,0 +1,12 @@
+.photo-album-item .photo-item {
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-item .video-player {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+

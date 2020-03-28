@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'social_token'
     ];
 
     /**
@@ -47,5 +47,9 @@ class User extends Authenticatable
 
     public function isAdmin() {
         return $this->roles()->where('name', 'admin')->exists();
+    }
+
+    public function medias() {
+        return $this->hasMany('App\Media', 'user_id');
     }
 }

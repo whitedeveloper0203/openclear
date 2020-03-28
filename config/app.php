@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'OpenClear'),
 
     /*
     |--------------------------------------------------------------------------
@@ -174,7 +174,13 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        // Other service providers...
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        // This is a dependency of the socialiteproviders/microsoft-graph provider, and will be installed with the provider via it's composer.json file
+        SocialiteProviders\Manager\ServiceProvider::class,
+        Scottybo\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
+        Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::class,
+        Lakshmaji\Thumbnail\ThumbnailServiceProvider::class,
     ],
 
     /*
@@ -225,7 +231,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Facebook' => Scottybo\LaravelFacebookSdk\FacebookFacade::class,
+        'Thumbnail' => Lakshmaji\Thumbnail\Facade\Thumbnail::class,
     ],
 
 ];

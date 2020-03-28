@@ -6,3 +6,15 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+// Custom CSS
+.landing-page 
+{
+    .header-spacer--standard {
+        margin-bottom: 0 !important;
+    }
+    .header-spacer--standard {
+        height: 100px !important;
+    }
+}

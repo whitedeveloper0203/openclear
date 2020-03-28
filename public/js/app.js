@@ -68991,15 +68991,27 @@ if (document.getElementById('home')) {
 
 /***/ }),
 
+/***/ "./resources/sass/import/import.scss":
+/*!*******************************************!*\
+  !*** ./resources/sass/import/import.scss ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!*************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/import/import.scss ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Projects\CDP\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Projects\CDP\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/white/working/Upwork_Tran/OpenClear/openclear/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/white/working/Upwork_Tran/OpenClear/openclear/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/white/working/Upwork_Tran/OpenClear/openclear/resources/sass/import/import.scss */"./resources/sass/import/import.scss");
 
 
 /***/ })
