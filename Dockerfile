@@ -81,6 +81,7 @@ COPY --chown=www:www . /var/www
 RUN echo "www:www" | sudo chpasswd && adduser www sudo
 # Change current user to www
 USER www
+RUN chown -R www:www /var/www
 
 EXPOSE 8080
 
