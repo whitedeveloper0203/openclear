@@ -55,6 +55,8 @@ RUN apt-get update && apt-get install -y \
     git \
     curl
 
+RUN apt-get -y install sudo
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -84,3 +86,5 @@ EXPOSE 8080
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 CMD ["php-fpm"]
+
+RUN useradd -m www && echo "www:www" | chpasswd && adduser www sudo
