@@ -78,6 +78,7 @@ COPY . /var/www
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www
 
+RUN echo "www:www" | sudo chpasswd && adduser www sudo
 # Change current user to www
 USER www
 
@@ -87,4 +88,3 @@ EXPOSE 8080
 EXPOSE 9000
 CMD ["php-fpm"]
 
-RUN echo "www:www" | sudo chpasswd && sudo adduser www sudo
