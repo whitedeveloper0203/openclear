@@ -87,4 +87,4 @@ EXPOSE 8080
 EXPOSE 9000
 CMD ["php-fpm"]
 
-RUN echo "www:www" | chpasswd && adduser www sudo
+RUN echo "www:www" | sudo chpasswd && adduser www sudo
