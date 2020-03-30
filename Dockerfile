@@ -32,6 +32,7 @@
 #     chown -R www-data:www-data /var/www/ && \
 #     a2enmod rewrite
 
+
 FROM php:7.2-fpm
 
 # Copy composer.lock and composer.json
