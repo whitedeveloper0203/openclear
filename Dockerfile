@@ -83,4 +83,4 @@ USER www
 EXPOSE 9000
 CMD ["php-fpm"]
 
-EXPOSE 80
+EXPOSE 8000
