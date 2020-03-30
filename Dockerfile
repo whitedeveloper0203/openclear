@@ -82,6 +82,7 @@ RUN echo "www:www" | sudo chpasswd && adduser www sudo
 # Change current user to www
 USER www
 RUN chown -R www:www /var/www
+RUN chmod 777 -R /var/www
 
 EXPOSE 8080
 
