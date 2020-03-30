@@ -20,7 +20,7 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
-<Directory /var/www/html/public/>
+<Directory /var/www/html/openclear/public/>
     Options Indexes FollowSymLinks
     AllowOverride All
     Require all granted
