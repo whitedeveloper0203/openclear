@@ -6,7 +6,8 @@
 			<div class="ui-block">
 				<div class="top-header">
 					<div class="top-header-thumb">
-						<img src="img/top-header1.jpg" alt="nature">
+						{{-- <img src="img/top-header1.jpg" alt="nature"> --}}
+						<img src="{{ headerPhoto(Auth::user()) }}" alt="nature">
 					</div>
 					<div class="profile-section">
 						<div class="row">
@@ -65,7 +66,7 @@
 
 								<ul class="more-dropdown more-with-triangle triangle-bottom-right">
 									<li>
-										<a href="#" data-toggle="modal" data-target="#update-header-photo">Update Profile Photo</a>
+										<a href="#" data-toggle="modal" data-target="#update-profile-photo">Update Profile Photo</a>
 									</li>
 									<li>
 										<a href="#" data-toggle="modal" data-target="#update-header-photo">Update Header Photo</a>

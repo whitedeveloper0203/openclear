@@ -13,7 +13,6 @@
             @if (Auth::user()->passed_register)
                 @include('includes.sidebar')
                 @include('includes.header')
-                @include('includes.popup')
             @endif 
         @endguest
 

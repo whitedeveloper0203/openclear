@@ -1694,3 +1694,11 @@
 	</div>
 </div>
 @endsection
+
+@push('styles')
+	
+@endpush
+
+@push('scriptsAfter')
+
+@endpush

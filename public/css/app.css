@@ -11364,3 +11364,9 @@ a.text-dark:focus {
   height: 100px !important;
 }
 
+.top-header-thumb {
+  height: 423px;
+  overflow: hidden;
+  position: relative;
+}
+

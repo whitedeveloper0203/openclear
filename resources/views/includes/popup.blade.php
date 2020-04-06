@@ -12,25 +12,82 @@
 			</div>
 
 			<div class="modal-body">
+				
 				<a href="#" class="upload-photo-item">
-				<svg class="olymp-computer-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg>
+					{{-- <svg for="upload" class="olymp-computer-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg> --}}
 
-				<h6>Upload Photo</h6>
-				<span>Browse your computer.</span>
-			</a>
+					<h6>Upload Photo</h6>
+					<span>Browse your computer.</span>
+					
+					<label for="home-file-photo-upload" class="file-upload__label">Select Photo</label>
+					<input class="file-upload__input" id="home-file-photo-upload" type="file" accept="image/*" name="file-upload">
+					
+					<div class="home-photo-preview-container d-none">
+						<img id="home-blah" src="" />
+						<button class="btn btn-primary btn-sm" id="home-blash-upload">
+							<span class="spinner-grow spinner-grow-sm d-none" role="status" aria-hidden="true"></span>
+							Upload
+						</button>
+					</div>
+				</a>
 
 				<a href="#" class="upload-photo-item" data-toggle="modal" data-target="#choose-from-my-photo">
+					<svg class="olymp-photos-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-photos-icon"></use></svg>
 
-			<svg class="olymp-photos-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-photos-icon"></use></svg>
+					<h6>Choose from My Photos</h6>
+					<span>Choose from your uploaded photos</span>
+				</a>
 
-			<h6>Choose from My Photos</h6>
-			<span>Choose from your uploaded photos</span>
-		</a>
 			</div>
 		</div>
 	</div>
 </div>
 
+<!-- Window-popup Update Profile Photo -->
+
+<div class="modal fade" id="update-profile-photo" tabindex="-1" role="dialog" aria-labelledby="update-profile-photo" aria-hidden="true">
+	<div class="modal-dialog window-popup update-header-photo" role="document">
+		<div class="modal-content">
+			<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
+				<svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>
+			</a>
+
+			<div class="modal-header">
+				<h6 class="title">Update Profile Photo</h6>
+			</div>
+
+			<div class="modal-body">
+				
+				<a href="#" class="upload-photo-item">
+					{{-- <svg for="upload" class="olymp-computer-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-computer-icon"></use></svg> --}}
+
+					<h6>Upload Photo</h6>
+					<span>Browse your computer.</span>
+					
+					<label for="home-file-photo-upload" class="file-upload__label">Select Photo</label>
+					<input class="file-upload__input" id="home-file-photo-upload" type="file" accept="image/*" name="file-upload">
+					
+					<div class="home-photo-preview-container d-none">
+						<img id="home-blah" src="" />
+						<button class="btn btn-primary btn-sm" id="home-blash-upload">
+							<span class="spinner-grow spinner-grow-sm d-none" role="status" aria-hidden="true"></span>
+							Upload
+						</button>
+					</div>
+				</a>
+
+				<a href="#" class="upload-photo-item" data-toggle="modal" data-target="#choose-from-my-photo">
+					<svg class="olymp-photos-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-photos-icon"></use></svg>
+
+					<h6>Choose from My Photos</h6>
+					<span>Choose from your uploaded photos</span>
+				</a>
+
+			</div>
+		</div>
+	</div>
+</div>
+	
 
 <!-- ... end Window-popup Update Header Photo -->
 
@@ -66,88 +123,24 @@
 				<div class="tab-content">
 					<div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true">
 
+						@foreach(localPhotos(Auth::user()) as $photo)
 						<div class="choose-photo-item" data-mh="choose-item">
 							<div class="radio">
 								<label class="custom-radio">
-									<img src="img/choose-photo1.jpg" alt="photo">
+									<img src="{{ $photo->url }}" alt="photo">
 									<input type="radio" name="optionsRadios">
 								</label>
 							</div>
 						</div>
-						<div class="choose-photo-item" data-mh="choose-item">
-							<div class="radio">
-								<label class="custom-radio">
-									<img src="img/choose-photo2.jpg" alt="photo">
-									<input type="radio" name="optionsRadios">
-								</label>
-							</div>
-						</div>
-						<div class="choose-photo-item" data-mh="choose-item">
-							<div class="radio">
-								<label class="custom-radio">
-									<img src="img/choose-photo3.jpg" alt="photo">
-									<input type="radio" name="optionsRadios">
-								</label>
-							</div>
-						</div>
-
-						<div class="choose-photo-item" data-mh="choose-item">
-							<div class="radio">
-								<label class="custom-radio">
-									<img src="img/choose-photo4.jpg" alt="photo">
-									<input type="radio" name="optionsRadios">
-								</label>
-							</div>
-						</div>
-						<div class="choose-photo-item" data-mh="choose-item">
-							<div class="radio">
-								<label class="custom-radio">
-									<img src="img/choose-photo5.jpg" alt="photo">
-									<input type="radio" name="optionsRadios">
-								</label>
-							</div>
-						</div>
-						<div class="choose-photo-item" data-mh="choose-item">
-							<div class="radio">
-								<label class="custom-radio">
-									<img src="img/choose-photo6.jpg" alt="photo">
-									<input type="radio" name="optionsRadios">
-								</label>
-							</div>
-						</div>
-
-						<div class="choose-photo-item" data-mh="choose-item">
-							<div class="radio">
-								<label class="custom-radio">
-									<img src="img/choose-photo7.jpg" alt="photo">
-									<input type="radio" name="optionsRadios">
-								</label>
-							</div>
-						</div>
-						<div class="choose-photo-item" data-mh="choose-item">
-							<div class="radio">
-								<label class="custom-radio">
-									<img src="img/choose-photo8.jpg" alt="photo">
-									<input type="radio" name="optionsRadios">
-								</label>
-							</div>
-						</div>
-						<div class="choose-photo-item" data-mh="choose-item">
-							<div class="radio">
-								<label class="custom-radio">
-									<img src="img/choose-photo9.jpg" alt="photo">
-									<input type="radio" name="optionsRadios">
-								</label>
-							</div>
-						</div>
-
+						@endforeach
 
 						<a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
 						<a href="#" class="btn btn-primary btn-lg btn--half-width">Confirm Photo</a>
 
 					</div>
-					<div class="tab-pane" id="profile" role="tabpanel" aria-expanded="false">
+					{{-- <div class="tab-pane" id="profile" role="tabpanel" aria-expanded="false">
 
+						@foreach(localPhotos(Auth::user()) as $photo)
 						<div class="choose-photo-item" data-mh="choose-item">
 							<figure>
 								<img src="img/choose-photo10.jpg" alt="photo">
@@ -157,57 +150,11 @@
 								</figcaption>
 							</figure>
 						</div>
-						<div class="choose-photo-item" data-mh="choose-item">
-							<figure>
-								<img src="img/choose-photo11.jpg" alt="photo">
-								<figcaption>
-									<a href="#">Photoshoot Summer 2016</a>
-									<span>Last Added: 5 weeks ago</span>
-								</figcaption>
-							</figure>
-						</div>
-						<div class="choose-photo-item" data-mh="choose-item">
-							<figure>
-								<img src="img/choose-photo12.jpg" alt="photo">
-								<figcaption>
-									<a href="#">Amazing Street Food</a>
-									<span>Last Added: 6 mins ago</span>
-								</figcaption>
-							</figure>
-						</div>
-
-						<div class="choose-photo-item" data-mh="choose-item">
-							<figure>
-								<img src="img/choose-photo13.jpg" alt="photo">
-								<figcaption>
-									<a href="#">Graffity & Street Art</a>
-									<span>Last Added: 16 hours ago</span>
-								</figcaption>
-							</figure>
-						</div>
-						<div class="choose-photo-item" data-mh="choose-item">
-							<figure>
-								<img src="img/choose-photo14.jpg" alt="photo">
-								<figcaption>
-									<a href="#">Amazing Landscapes</a>
-									<span>Last Added: 13 mins ago</span>
-								</figcaption>
-							</figure>
-						</div>
-						<div class="choose-photo-item" data-mh="choose-item">
-							<figure>
-								<img src="img/choose-photo15.jpg" alt="photo">
-								<figcaption>
-									<a href="#">The Majestic Canyon</a>
-									<span>Last Added: 57 mins ago</span>
-								</figcaption>
-							</figure>
-						</div>
-
+						@endforeach
 
 						<a href="#" class="btn btn-secondary btn-lg btn--half-width">Cancel</a>
 						<a href="#" class="btn btn-primary btn-lg disabled btn--half-width">Confirm Photo</a>
-					</div>
+					</div> --}}
 				</div>
 			</div>
 		</div>

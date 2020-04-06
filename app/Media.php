@@ -14,6 +14,15 @@ class Media extends Model
     protected $table = 'medias';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'type'
+    ];
+
+    /**
      * The users that belong to the role.
      */
     public function user()

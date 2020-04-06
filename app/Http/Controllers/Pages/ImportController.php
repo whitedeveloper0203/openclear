@@ -151,7 +151,7 @@ class ImportController extends Controller
      */
     public function importLocalMedia(Request $request, $type) 
     {
-        $disk           = Storage::disk('gcs');
+        $disk = Storage::disk('gcs');
 
         $mediaTitle = $request->input('title');
         $mediaFile = $request->file('file');
@@ -202,6 +202,55 @@ class ImportController extends Controller
         $media->type        = $type;
         $media->thumbnail_url = $thumbnailUrl;
         
+        $media->save();
+
+        return response()->json([
+            'message' => 'Media Uploaded Successfully',
+            'data' => $media,
+        ]);
+    }
+
+    /**
+     * Import Header Photo function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function importHeaderPhoto(Request $request)
+    {
+        $disk = Storage::disk('gcs');
+
+        $mediaFile = $request->file('file');
+        $mediaId = '000'.rand();
+        $new_name = $mediaId . '.' . $mediaFile->getClientOriginalExtension();
+
+        // Move image to public/image
+        $mediaFile->move(public_path('uploads'), $new_name);
+        $publicMediaUrl = public_path('uploads/'.$new_name);
+
+        // Upload to GCP
+        $filePath       = 'photo'.'/'.$new_name; 
+        $fileContent    = file_get_contents($publicMediaUrl);
+
+        $disk->put($filePath, $fileContent);
+        $url = $disk->url($filePath);
+
+        // Remove image in public/image
+        @unlink($publicMediaUrl);
+
+        $user = Auth::user();
+
+        // $media = new Media();
+        // $media->user_id     = $user->id;
+        // $media->file_id     = $mediaId;
+        // $media->url         = $url;
+        // $media->thumbnail_url = $thumbnailUrl;
+        $media = Media::firstOrNew([
+            'user_id'   => $user->id,
+            'type'      => 'header',
+        ]);
+        $media->url = $url;
+        $media->file_id = $mediaId;
         $media->save();
 
         return response()->json([

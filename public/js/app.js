@@ -69009,9 +69009,9 @@ if (document.getElementById('home')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/white/working/Upwork_Tran/OpenClear/openclear/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /home/white/working/Upwork_Tran/OpenClear/openclear/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /home/white/working/Upwork_Tran/OpenClear/openclear/resources/sass/import/import.scss */"./resources/sass/import/import.scss");
+__webpack_require__(/*! /home/white/working/Upwork_Tran/OpenClear/OpenClear_0.1/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /home/white/working/Upwork_Tran/OpenClear/OpenClear_0.1/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /home/white/working/Upwork_Tran/OpenClear/OpenClear_0.1/resources/sass/import/import.scss */"./resources/sass/import/import.scss");
 
 
 /***/ })

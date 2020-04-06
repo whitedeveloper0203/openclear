@@ -41,3 +41,5 @@
 <script defer src="{{ asset('fonts/fontawesome-all.js') }}"></script>
 
 <script src="{{ asset('Bootstrap/dist/js/bootstrap.bundle.js') }}"></script>
+
+<script src="{{ asset('js/pages/home/action.js') }}"></script>

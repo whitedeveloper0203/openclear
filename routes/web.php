@@ -37,6 +37,7 @@ Route::post('/import-facebook/{service}', 'Pages\ImportController@importFacebook
 
 // Import Local Data
 Route::post('/import/{type}', 'Pages\ImportController@importLocalMedia')->middleware('auth', 'profile.passed');
+Route::post('/import-header-photo', 'Pages\ImportController@importHeaderPhoto')->middleware('auth', 'profile.passed');
 
 // Account Pages
 Route::get('/friend-request', 'Pages\Account\FriendRequestController@index')->name('friend-request')->middleware('auth', 'profile.passed');
