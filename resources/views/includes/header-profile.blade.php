@@ -52,7 +52,7 @@
 						</div>
 
 						<div class="control-block-button">
-							<a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
+							<a href="/friend-request" class="btn btn-control bg-blue">
 								<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 							</a>
 

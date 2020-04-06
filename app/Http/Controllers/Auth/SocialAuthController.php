@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 use Socialite;
 use App\User;
@@ -105,6 +106,20 @@ class SocialAuthController extends Controller
     }
 
     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password_confirmation' => 'required_with:password|same:password|min:8'
+        ]);
+    }
+
+    /**
      * Update user instance after a valid registration.
      *
      * @param  array  $data
@@ -112,10 +127,13 @@ class SocialAuthController extends Controller
      */
     public function accountRegister(Request $data)
     {
+        $validator = $this->validator($data->all());
+        if ($validator->fails())
+        {
+            return back()->withInput()->withErrors($validator->messages());
+        }
+
         $user = Auth::user();
-        $user->first_name = $data->first_name;
-        $user->last_name = $data->last_name;
-        // $user->email = $data->email;
         $user->password = Hash::make($data->password);
         $user->passed_register = true;
         $user->save();

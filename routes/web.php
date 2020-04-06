@@ -37,3 +37,8 @@ Route::post('/import-facebook/{service}', 'Pages\ImportController@importFacebook
 
 // Import Local Data
 Route::post('/import/{type}', 'Pages\ImportController@importLocalMedia')->middleware('auth', 'profile.passed');
+
+// Account Pages
+Route::get('/friend-request', 'Pages\Account\FriendRequestController@index')->name('friend-request')->middleware('auth', 'profile.passed');
+Route::get('/notification', 'Pages\Account\NotificationController@index')->name('notification')->middleware('auth', 'profile.passed');
+Route::get('/chat-message', 'Pages\Account\ChatMessageController@index')->name('chat-message')->middleware('auth', 'profile.passed');
