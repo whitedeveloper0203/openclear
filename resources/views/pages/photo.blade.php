@@ -252,7 +252,7 @@
 					<article class="hentry post">
 
 						<div class="post__author author vcard inline-items">
-							<img src="img/author-page.jpg" alt="author">
+							<img src="{{ profilePhoto(Auth::user()) }}" alt="author">
 
 							<div class="author-date">
 								<a class="h6 post__author-name fn" href="/">{{ Auth::user()->first_name.' '.Auth::user()->last_name }}</a>
@@ -422,7 +422,7 @@
 					<form class="comment-form inline-items">
 
 						<div class="post__author author vcard inline-items">
-							<img src="img/author-page.jpg" alt="author">
+							<img src="{{ profilePhoto(Auth::user()) }}" alt="author">
 
 							<div class="form-group with-icon-right ">
 								<textarea class="form-control" placeholder="Press Enter to post..."></textarea>
@@ -673,7 +673,7 @@
 			<article class="hentry post">
 
 				<div class="post__author author vcard inline-items">
-					<img src="img/author-page.jpg" alt="author">
+					<img src="{{ profilePhoto(Auth::user()) }}" alt="author">
 
 					<div class="author-date">
 						<a class="h6 post__author-name fn" href="/">{{ Auth::user()->first_name.' '.Auth::user()->last_name }}</a>

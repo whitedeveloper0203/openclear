@@ -43,3 +43,8 @@ Route::post('/import-header-photo', 'Pages\ImportController@importHeaderPhoto')-
 Route::get('/friend-request', 'Pages\Account\FriendRequestController@index')->name('friend-request')->middleware('auth', 'profile.passed');
 Route::get('/notification', 'Pages\Account\NotificationController@index')->name('notification')->middleware('auth', 'profile.passed');
 Route::get('/chat-message', 'Pages\Account\ChatMessageController@index')->name('chat-message')->middleware('auth', 'profile.passed');
+Route::get('/account-setting', 'Pages\Account\AccountSettingController@index')->name('account-setting')->middleware('auth', 'profile.passed');
+Route::get('/personal-information', 'Pages\Account\PersonalInfoController@index')->name('personal-info')->middleware('auth', 'profile.passed');
+Route::get('/change-password', 'Pages\Account\ChangePasswordController@index')->name('change-password')->middleware('auth', 'profile.passed');
+Route::get('/hobby-interest', 'Pages\Account\HobbyInterestController@index')->name('hobby-interest')->middleware('auth', 'profile.passed');
+Route::get('/education', 'Pages\Account\EducationController@index')->name('education')->middleware('auth', 'profile.passed');

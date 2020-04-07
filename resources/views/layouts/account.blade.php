@@ -55,19 +55,19 @@
 							<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
 								<ul class="your-profile-menu">
 									<li>
-										<a href="28-YourAccount-PersonalInformation.html">Personal Information</a>
+										<a href="/personal-information">Personal Information</a>
 									</li>
 									<li>
-										<a href="29-YourAccount-AccountSettings.html">Account Settings</a>
+										<a href="/account-setting">Account Settings</a>
 									</li>
 									<li>
-										<a href="30-YourAccount-ChangePassword.html">Change Password</a>
+										<a href="/change-password">Change Password</a>
 									</li>
 									<li>
-										<a href="31-YourAccount-HobbiesAndInterests.html">Hobbies and Interests</a>
+										<a href="/hobby-interest">Hobbies and Interests</a>
 									</li>
 									<li>
-										<a href="32-YourAccount-EducationAndEmployement.html">Education and Employement</a>
+										<a href="/education">Education and Employement</a>
 									</li>
 								</ul>
 							</div>
@@ -85,7 +85,7 @@
 						<a href="/friend-request" class="h6 title">Friend Requests</a>
 						<a href="#" class="items-round-little bg-blue">4</a>
 					</div>
-					<div class="ui-block-title ui-block-title-small">
+					{{-- <div class="ui-block-title ui-block-title-small">
 						<h6 class="title">FAVOURITE PAGE</h6>
 					</div>
 					<div class="ui-block-title">
@@ -93,7 +93,7 @@
 					</div>
 					<div class="ui-block-title">
 						<a href="36-FavPage-SettingsAndCreatePopup.html" class="h6 title">Fav Page Settings</a>
-					</div>
+					</div> --}}
 				</div>
 				
 				<!-- ... end Your Profile  -->
@@ -133,7 +133,7 @@
 
 					<li>
 						<div class="author-thumb">
-							<img src="img/author-page.jpg" alt="author" class="mCS_img_loaded">
+							<img src="{{ profilePhoto(Auth::user()) }}" alt="author" class="mCS_img_loaded">
 						</div>
 						<div class="notification-event">
 							<span class="chat-message-item">Don’t worry Mathilda!</span>

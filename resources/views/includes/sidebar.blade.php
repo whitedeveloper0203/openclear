@@ -198,7 +198,9 @@
 			<div class="control-block">
 				<div class="author-page author vcard inline-items">
 					<div class="author-thumb">
-						<img alt="author" src="img/author-page.jpg" class="avatar">
+						<div class="header-avatar">
+							<img alt="author" src="{{ profilePhoto(Auth::user()) }}" class="avatar">
+						</div>
 						<span class="icon-status online"></span>
 					</div>
 					<a href="/" class="author-name fn">

@@ -11374,3 +11374,17 @@ a.text-dark:focus {
   width: 124px;
 }
 
+.header-avatar {
+  border-radius: 100%;
+  border: 1px solid #fff;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  background-color: #FDFBEE;
+}
+
+.header-avatar img {
+  width: 36px;
+}
+
