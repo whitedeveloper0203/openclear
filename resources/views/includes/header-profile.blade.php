@@ -79,8 +79,9 @@
 						</div>
 					</div>
 					<div class="top-header-author">
-						<a href="/" class="author-thumb">
-							<img src="img/author-main1.jpg" alt="author">
+						<a href="/" class="author-thumb header-profile-thumb">
+							{{-- <img src="img/author-main1.jpg" alt="author"> --}}
+							<img src="{{ profilePhoto(Auth::user()) }}" alt="author">
 						</a>
 						<div class="author-content">
 							<a href="/" class="h4 author-name">{{ Auth::user()->first_name.' '.Auth::user()->last_name }}</a>

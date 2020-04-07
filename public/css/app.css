@@ -11370,3 +11370,7 @@ a.text-dark:focus {
   position: relative;
 }
 
+.header-profile-thumb img {
+  width: 124px;
+}
+

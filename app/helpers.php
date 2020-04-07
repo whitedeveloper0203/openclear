@@ -12,9 +12,20 @@ function headerPhoto($user)
         $headerMedia = $user->medias()->where('type', 'header')->firstOrFail();
         return $headerMedia->url;
     } catch (ErrorException $e) {   
+        return 'img/author-main1.jpg';
+    }
+}
+
+function profilePhoto($user)
+{
+    try {
+        $headerMedia = $user->medias()->where('type', 'profile')->firstOrFail();
+        return $headerMedia->url;
+    } catch (ErrorException $e) {   
         return 'img/top-header1.jpg';
     }
 }
+
 
 function localPhotos($user)
 {

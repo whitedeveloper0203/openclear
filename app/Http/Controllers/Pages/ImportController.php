@@ -221,6 +221,7 @@ class ImportController extends Controller
         $disk = Storage::disk('gcs');
 
         $mediaFile = $request->file('file');
+        $type = $request->input('type');
         $mediaId = '000'.rand();
         $new_name = $mediaId . '.' . $mediaFile->getClientOriginalExtension();
 
@@ -240,14 +241,9 @@ class ImportController extends Controller
 
         $user = Auth::user();
 
-        // $media = new Media();
-        // $media->user_id     = $user->id;
-        // $media->file_id     = $mediaId;
-        // $media->url         = $url;
-        // $media->thumbnail_url = $thumbnailUrl;
         $media = Media::firstOrNew([
             'user_id'   => $user->id,
-            'type'      => 'header',
+            'type'      => $type,
         ]);
         $media->url = $url;
         $media->file_id = $mediaId;

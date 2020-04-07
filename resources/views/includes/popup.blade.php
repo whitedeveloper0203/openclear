@@ -64,12 +64,12 @@
 					<h6>Upload Photo</h6>
 					<span>Browse your computer.</span>
 					
-					<label for="home-file-photo-upload" class="file-upload__label">Select Photo</label>
-					<input class="file-upload__input" id="home-file-photo-upload" type="file" accept="image/*" name="file-upload">
+					<label for="home-profile-avatar-upload" class="file-upload__label">Select Photo</label>
+					<input class="file-upload__input" id="home-profile-avatar-upload" type="file" accept="image/*" name="file-upload">
 					
-					<div class="home-photo-preview-container d-none">
-						<img id="home-blah" src="" />
-						<button class="btn btn-primary btn-sm" id="home-blash-upload">
+					<div class="home-avatar-preview-container d-none">
+						<img id="home-profile-avatar" src="" />
+						<button class="btn btn-primary btn-sm" id="home-avatar-upload">
 							<span class="spinner-grow spinner-grow-sm d-none" role="status" aria-hidden="true"></span>
 							Upload
 						</button>
