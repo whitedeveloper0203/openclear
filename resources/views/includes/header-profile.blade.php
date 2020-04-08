@@ -53,11 +53,11 @@
 						</div>
 
 						<div class="control-block-button">
-							<a href="/friend-request" class="btn btn-control bg-blue">
+							<a href="/friend-request" class="btn btn-control bg-blue" title="Friends Request">
 								<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 							</a>
 
-							<a href="#" class="btn btn-control bg-purple">
+							<a href="/chat-message" class="btn btn-control bg-purple" title="Chat Messages">
 								<svg class="olymp-chat---messages-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
 							</a>
 
@@ -72,7 +72,7 @@
 										<a href="#" data-toggle="modal" data-target="#update-header-photo">Update Header Photo</a>
 									</li>
 									<li>
-										<a href="29-YourAccount-AccountSettings.html">Account Settings</a>
+										<a href="/account-setting">Account Settings</a>
 									</li>
 								</ul>
 							</div>

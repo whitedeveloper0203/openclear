@@ -361,20 +361,20 @@
 
                         <ul class="account-settings">
                             <li>
-                                <a href="29-YourAccount-AccountSettings.html">
+                                <a href="/account-setting">
 
                                     <svg class="olymp-menu-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
 
                                     <span>Profile Settings</span>
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="36-FavPage-SettingsAndCreatePopup.html">
                                     <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
 
                                     <span>Create Fav Page</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="/logout">
                                     <svg class="olymp-logout-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg>

@@ -8,22 +8,22 @@ function alreadyImported($user, $media_id)
 
 function headerPhoto($user)
 {
-    try {
-        $headerMedia = $user->medias()->where('type', 'header')->firstOrFail();
+    $headerMedia = $user->medias()->where('type', 'header')->first();
+    
+    if ($headerMedia)
         return $headerMedia->url;
-    } catch (ErrorException $e) {   
-        return 'img/author-main1.jpg';
-    }
+
+    return 'img/top-header1.jpg';
 }
 
 function profilePhoto($user)
 {
-    try {
-        $headerMedia = $user->medias()->where('type', 'profile')->firstOrFail();
+    $headerMedia = $user->medias()->where('type', 'profile')->first();
+
+    if ($headerMedia)
         return $headerMedia->url;
-    } catch (ErrorException $e) {   
-        return 'img/top-header1.jpg';
-    }
+
+    return 'img/author-main1.jpg';
 }
 
 

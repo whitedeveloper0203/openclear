@@ -117,7 +117,9 @@
             
                         <li>
                             <div class="author-thumb">
-                                <img src="{{ profilePhoto(Auth::user()) }}" alt="author">
+                                <div class="header-avatar">
+                                    <img src="{{ profilePhoto(Auth::user()) }}" alt="author">
+                                </div>
                             </div>
                             <div class="notification-event">
                                 <span class="chat-message-item">Don’t worry Mathilda!</span>
@@ -328,7 +330,9 @@
             
                         <li>
                             <div class="author-thumb">
-                                <img src="{{ profilePhoto(Auth::user()) }}" alt="author">
+                                <div class="header-avatar">
+                                    <img src="{{ profilePhoto(Auth::user()) }}" alt="author">
+                                </div>
                             </div>
                             <div class="notification-event">
                                 <div class="event-info-wrap">
