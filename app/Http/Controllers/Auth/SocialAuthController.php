@@ -114,8 +114,11 @@ class SocialAuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/[@$!%*#?&]/'],
             'password_confirmation' => 'required_with:password|same:password|min:8'
+        ],
+        [
+            'password.regex' => 'Must contain at least one special character'
         ]);
     }
 

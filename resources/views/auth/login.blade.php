@@ -422,7 +422,7 @@
                                                     </label>
                                                 </label>
                                             </div>
-                                            <a href="#" class="forgot" data-toggle="modal" data-target="#restore-password">Forgot my Password</a>
+                                            <a href="{{ route('password.request') }}" class="forgot">Forgot my Password</a>
                                         </div>
                 
                                         <button type="submit" class="btn btn-lg btn-primary full-width">Login</button>

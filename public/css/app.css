@@ -11388,3 +11388,7 @@ a.text-dark:focus {
   width: 39px;
 }
 
+.remember .forgot:hover {
+  color: #ff5e3a !important;
+}
+
