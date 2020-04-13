@@ -11,26 +11,38 @@
         
         <!-- Change Password Form -->
         
-        <form>
+        <form method="POST" action="{{ route('change-password') }}">
+            @csrf 
+
+            @foreach ($errors->all() as $error)
+                <p class="text-danger">{{ $error }}</p>
+            @endforeach 
+
+            @isset($messages)
+                @foreach ($messages as $message)
+                    <p class="text-success">{{ $message }}</p>
+                @endforeach
+            @endisset
+            
             <div class="row">
         
                 <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="form-group label-floating">
                         <label class="control-label">Confirm Current Password</label>
-                        <input class="form-control" placeholder="" type="password" value="Olympus-2017">
+                        <input class="form-control" placeholder="" type="password" name="current_password">
                     </div>
                 </div>
         
                 <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="form-group label-floating is-empty">
                         <label class="control-label">Your New Password</label>
-                        <input class="form-control" placeholder="" type="password">
+                        <input class="form-control" placeholder="" type="password" name="new_password">
                     </div>
                 </div>
                 <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="form-group label-floating is-empty">
                         <label class="control-label">Confirm New Password</label>
-                        <input class="form-control" placeholder="" type="password">
+                        <input class="form-control" placeholder="" type="password" name="new_confirm_password">
                     </div>
                 </div>
         
@@ -44,7 +56,7 @@
                             </label>
                         </div>
         
-                        <a href="#" class="forgot" data-toggle="modal" data-target="#restore-password">Forgot my Password</a>
+                        <a href="{{ route('password.request') }}" class="forgot">Forgot my Password</a>
                     </div>
                 </div>
         
