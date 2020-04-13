@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Pages;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 use App\Media;
 
 use Auth;
 use Storage;
 use Thumbnail;
+use Google_Client;
+use Google_Service_People;
 
 class ImportController extends Controller
 {
@@ -254,4 +257,88 @@ class ImportController extends Controller
             'data' => $media,
         ]);
     }
+
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function google()
+    {
+        
+
+        // $google_client_token = [
+        //     'access_token' => $user->social_token,
+        // ];
+
+        // $client = new Google_Client();
+        // $client->setApplicationName('OpenClear');
+        // $client->setAccessToken(json_encode($google_client_token));
+        // $client->setAccessType('offline');
+        // $client->setClientId(env('G_CLIENT_ID'));
+        // $client->setClientSecret(env('G_CLIENT_SECRET'));
+        // $client->setRedirectUri(env('G_REDIRECT'));
+
+        // $service = new Google_Service_People($client);
+
+        // $optParams = array('requestMask.includeField' => 'person.phone_numbers,person.names,person.email_addresses');
+        // $results = $service->people_connections->listPeopleConnections('people/me',$optParams);
+
+        // echo ('<pre>');
+        // print_r($results);
+
+        $contacts = $this->getGmailContacts();
+        $data = [
+            'photos'    => [],
+            'videos'    => [],
+            'friends'   => $contacts,
+        ];
+        return view('pages.import-google')->with($data);
+    }
+
+    /**
+     * Get contacted gmail and title
+     *
+     * @return array
+     */
+    protected function getGmailContacts()
+    {
+        $user = Auth::user();
+
+        $max_results = 2000;
+  
+        $url = 'https://www.google.com/m8/feeds/contacts/default/full?alt=json&amp;max-results='.$max_results;
+
+        $http_client = new \GuzzleHttp\Client();
+        $response = $http_client->request('GET', $url, [
+            'headers' => [
+                'Authorization' => 'Bearer '.$user->social_token,
+                'GData-Version' => '3.0'
+            ]
+        ]);
+        
+        $feeds = json_decode($response->getBody()->getContents(), true);
+        $feeds = $feeds['feed']['entry'];
+        $contacts = [];
+    
+        foreach ($feeds as $feed) {
+
+            if (isset ($feed['gd$email']) && isset ($feed['title'])) {
+                
+                $email = $feed['gd$email'][0]['address'];
+                $title = $feed['title']['$t'];
+
+                if (strlen($title) == 0)
+                    $title = strstr($email, '@', true);
+
+                $contacts[] = [ 
+                    'title' => $title, 
+                    'email' => $email, 
+                ];
+            }
+        }
+
+        return $contacts;
+    } 
 }

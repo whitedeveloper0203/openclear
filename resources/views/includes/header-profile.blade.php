@@ -40,6 +40,9 @@
 													<a href="redirect/facebook">Import From Facebook</a>
 												</li>
 												<li>
+													<a href="redirect/google">Import From Google</a>
+												</li>
+												<li>
 													<a href="#">Report Profile</a>
 												</li>
 												<li>

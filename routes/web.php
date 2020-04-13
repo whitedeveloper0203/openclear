@@ -34,6 +34,8 @@ Route::get('/video', 'Pages\VideoController@index')->name('video')->middleware('
 // Import Social Data
 Route::get('/import-facebook', 'Pages\ImportController@facebook')->name('import-facebook')->middleware('auth', 'profile.passed');
 Route::post('/import-facebook/{service}', 'Pages\ImportController@importFacebook')->middleware('auth', 'profile.passed');
+Route::get('/import-google', 'Pages\ImportController@google')->name('import-facebook')->middleware('auth', 'profile.passed');
+// Route::post('/import-facebook/{service}', 'Pages\ImportController@importFacebook')->middleware('auth', 'profile.passed');
 
 // Import Local Data
 Route::post('/import/{type}', 'Pages\ImportController@importLocalMedia')->middleware('auth', 'profile.passed');

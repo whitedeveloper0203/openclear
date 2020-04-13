@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Socialite;
 use App\User;
 use Auth;
+use Google_Service_People;
 
 class SocialAuthController extends Controller
 {
@@ -29,6 +30,9 @@ class SocialAuthController extends Controller
      */
     public function redirect($service)
     {
+        if (Auth::user() && $service == 'google')
+            return Socialite::driver($service)->scopes(['openid', 'profile', 'email', Google_Service_People::CONTACTS_READONLY, 'https://www.google.com/m8/feeds'])->redirect();
+        
         return Socialite::driver($service)->redirect();
     }
     

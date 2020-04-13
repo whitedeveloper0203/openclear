@@ -181,6 +181,7 @@ return [
         Scottybo\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
         Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::class,
         Lakshmaji\Thumbnail\ThumbnailServiceProvider::class,
+        // App\Providers\GoogleServiceProvider::class,
     ],
 
     /*
