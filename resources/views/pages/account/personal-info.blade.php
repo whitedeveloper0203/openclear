@@ -7,119 +7,109 @@
         <h6 class="title">Personal Information</h6>
     </div>
     <div class="ui-block-content">
-
         
         <!-- Personal Information Form  -->
         
-        <form>
+        <form method="POST" action="{{ route('personal-info') }}">
             <div class="row">
         
                 <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="form-group label-floating">
                         <label class="control-label">First Name</label>
-                        <input class="form-control" placeholder="" type="text" value="James">
+                        <input class="form-control" placeholder="" type="text" name="first_name" value="{{ $user->first_name }}">
                     </div>
         
                     <div class="form-group label-floating">
                         <label class="control-label">Your Email</label>
-                        <input class="form-control" placeholder="" type="email" value="jspiegel@yourmail.com">
+                        <input class="form-control" placeholder="" type="email" name="email" value="{{ $user->email }}">
                     </div>
         
                     <div class="form-group date-time-picker label-floating">
                         <label class="control-label">Your Birthday</label>
-                        <input name="datetimepicker" value="10/24/1984" />
+                        <input name="datetimepicker" name="birthday" value="{{ $personalInfo->birthday }}" />
                         <span class="input-group-addon">
-                                                <svg class="olymp-month-calendar-icon icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-month-calendar-icon"></use></svg>
-                                            </span>
+                            <svg class="olymp-month-calendar-icon icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-month-calendar-icon"></use></svg>
+                        </span>
                     </div>
                 </div>
         
                 <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="form-group label-floating">
                         <label class="control-label">Last Name</label>
-                        <input class="form-control" placeholder="" type="text" value="Spiegel">
+                        <input class="form-control" placeholder="" type="text" name="last_name" value="{{ $user->last_name }}">
                     </div>
         
                     <div class="form-group label-floating">
                         <label class="control-label">Your Website</label>
-                        <input class="form-control" placeholder="" type="email" value="daydreamzagency.com">
+                        <input class="form-control" placeholder="" type="text" name="website_url" value="{{ $personalInfo->website_url }}">
                     </div>
         
         
                     <div class="form-group label-floating is-empty">
                         <label class="control-label">Your Phone Number</label>
-                        <input class="form-control" placeholder="" type="text">
+                        <input class="form-control" placeholder="" type="text" name="phone" value="{{ $personalInfo->phone }}">
                     </div>
                 </div>
         
                 <div class="col col-lg-4 col-md-4 col-sm-12 col-12">
                     <div class="form-group label-floating is-select">
                         <label class="control-label">Your Country</label>
-                        <select class="selectpicker form-control">
-                            <option value="US">United States</option>
-                            <option value="AU">Australia</option>
+                        <select class="form-control" id="country">
+                            <option value="" selected disabled>Select</option>
+                            @foreach($countries as $country)
+                                <option value="{{$country->id}}"> {{$country->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col col-lg-4 col-md-4 col-sm-12 col-12">
                     <div class="form-group label-floating is-select">
                         <label class="control-label">Your State / Province</label>
-                        <select class="selectpicker form-control">
-                            <option value="CA">California</option>
-                            <option value="TE">Texas</option>
+                        <select class="form-control" id="state" name="state">
                         </select>
                     </div>
                 </div>
                 <div class="col col-lg-4 col-md-4 col-sm-12 col-12">
                     <div class="form-group label-floating is-select">
                         <label class="control-label">Your City</label>
-                        <select class="selectpicker form-control">
-                            <option value="SF">San Francisco</option>
-                            <option value="NY">New York</option>
+                        <select class="form-control" id="city" name="city">
                         </select>
                     </div>
                 </div>
                 <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Write a little description about you">Hi, I’m James, I’m 36 and I work as a Digital Designer for the  “Daydreams” Agency in Pier 56</textarea>
+                        <textarea class="form-control" placeholder="Write a little description about you" name="description">{{ $personalInfo->description }}</textarea>
                     </div>
         
                     <div class="form-group label-floating is-select">
                         <label class="control-label">Your Gender</label>
-                        <select class="selectpicker form-control">
+                        <select class="form-control">
                             <option value="MA">Male</option>
                             <option value="FE">Female</option>
                         </select>
                     </div>
         
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">Religious Belifs</label>
-                        <input class="form-control" placeholder="" type="text">
-                    </div>
                 </div>
                 <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">Your Birthplace</label>
-                        <input class="form-control" placeholder="" type="text">
-                    </div>
         
                     <div class="form-group label-floating">
                         <label class="control-label">Your Occupation</label>
-                        <input class="form-control" placeholder="" type="text" value="UI/UX Designer">
+                        <input class="form-control" placeholder="" type="text" name="occupation" value="{{ $personalInfo->occupation }}">
                     </div>
         
                     <div class="form-group label-floating is-select">
                         <label class="control-label">Status</label>
-                        <select class="selectpicker form-control">
+                        <select class="form-control">
                             <option value="MA">Married</option>
                             <option value="FE">Not Married</option>
                         </select>
                     </div>
-        
-                    <div class="form-group label-floating">
-                        <label class="control-label">Political Incline</label>
-                        <input class="form-control" placeholder="" type="text" value="Democrat">
+
+                    <div class="form-group label-floating is-empty">
+                        <label class="control-label">Religious Belifs</label>
+                        <input class="form-control" placeholder="" type="text" name="religious" value="{{ $personalInfo->religious }}">
                     </div>
+    
                 </div>
                 <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="form-group with-icon label-floating">
@@ -169,5 +159,5 @@
 @endpush
 
 @push('scriptsAfter')
-	
+    <script src="{{ asset('js/pages/settings/personal-information.js') }}"></script>
 @endpush

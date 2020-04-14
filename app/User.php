@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -51,5 +50,9 @@ class User extends Authenticatable
 
     public function medias() {
         return $this->hasMany('App\Media', 'user_id');
+    }
+
+    public function personalInfo() {
+        return $this->hasOne('App\UsersPersonalInfo', 'user_id')->first();
     }
 }

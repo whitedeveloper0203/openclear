@@ -50,6 +50,7 @@ class ChangePasswordController extends Controller
         $data = [
             'messages'    => ['Successfuly changed'],
         ];
+        
         return view('pages.account.change-password')->with($data);
     }
 }

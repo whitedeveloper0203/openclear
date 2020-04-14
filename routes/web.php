@@ -45,18 +45,28 @@ Route::post('/import-header-photo', 'Pages\ImportController@importHeaderPhoto')-
 
 // Friend Request
 Route::get('/friend-request', 'Pages\Account\FriendRequestController@index')->name('friend-request')->middleware('auth', 'profile.passed');
+
 // Notification
 Route::get('/notification', 'Pages\Account\NotificationController@index')->name('notification')->middleware('auth', 'profile.passed');
+
 // Chat Messages
 Route::get('/chat-message', 'Pages\Account\ChatMessageController@index')->name('chat-message')->middleware('auth', 'profile.passed');
+
 // Account Setting
 Route::get('/account-setting', 'Pages\Account\AccountSettingController@index')->name('account-setting')->middleware('auth', 'profile.passed');
+
 // Personal Information
 Route::get('/personal-information', 'Pages\Account\PersonalInfoController@index')->name('personal-info')->middleware('auth', 'profile.passed');
+Route::post('/personal-information', 'Pages\Account\PersonalInfoController@store')->name('personal-info')->middleware('auth', 'profile.passed');
+Route::get('/personal-information/get-state-list','Pages\Account\PersonalInfoController@getStateList')->name('state-list')->middleware('auth', 'profile.passed');
+Route::get('/personal-information/get-city-list','Pages\Account\PersonalInfoController@getCityList')->name('city-list')->middleware('auth', 'profile.passed');
+
 // Change Password
 Route::get('/change-password', 'Pages\Account\ChangePasswordController@index')->name('change-password')->middleware('auth', 'profile.passed');
 Route::post('change-password', 'Pages\Account\ChangePasswordController@store')->name('change-password')->middleware('auth', 'profile.passed');
+
 // Hobby Interest
 Route::get('/hobby-interest', 'Pages\Account\HobbyInterestController@index')->name('hobby-interest')->middleware('auth', 'profile.passed');
+
 // Education
 Route::get('/education', 'Pages\Account\EducationController@index')->name('education')->middleware('auth', 'profile.passed');
