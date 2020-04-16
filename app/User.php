@@ -55,4 +55,8 @@ class User extends Authenticatable
     public function personalInfo() {
         return $this->hasOne('App\UsersPersonalInfo', 'user_id')->first();
     }
+
+    public function hobby() {
+        return $this->hasOne('App\Hobby', 'user_id')->first();
+    }
 }

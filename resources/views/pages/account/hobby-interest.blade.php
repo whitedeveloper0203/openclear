@@ -11,21 +11,29 @@
         
         <!-- Form Hobbies and Interests -->
         
-        <form>
+        <form method="POST" action="{{ route('hobby-interest') }}">
+            @csrf 
+
+            @isset($messages)
+                @foreach ($messages as $message)
+                    <p class="text-success">{{ $message }}</p>
+                @endforeach
+            @endisset
+
             <div class="row">
         
                 <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Hobbies">I like to ride the bike to work, swimming, and working out. I also like reading design magazines, go to museums, and binge watching a good tv show while it’s raining outside.</textarea>
+                        <textarea class="form-control" placeholder="Hobbies" name="txt_hobbies">{{ $hobby->txt_hobbies }}</textarea>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Favourite TV Shows">Breaking Good, RedDevil, People of Interest, The Running Dead, Found,  American Guy.</textarea>
+                        <textarea class="form-control" placeholder="Favourite TV Shows" name="txt_favorite_tv">{{ $hobby->txt_favorite_tv }}</textarea>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Favourite Movies">Idiocratic, The Scarred Wizard and the Fire Crown,  Crime Squad, Ferrum Man. </textarea>
+                        <textarea class="form-control" placeholder="Favourite Movies" name="txt_favorite_movie">{{ $hobby->txt_favorite_movie }}</textarea>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Favourite Games">The First of Us, Assassin’s Squad, Dark Assylum, NMAK16, Last Cause 4, Grand Snatch Auto. </textarea>
+                        <textarea class="form-control" placeholder="Favourite Games" name="txt_favorite_game">{{ $hobby->txt_favorite_game }}</textarea>
                     </div>
         
                     <button class="btn btn-secondary btn-lg full-width">Cancel</button>
@@ -33,16 +41,16 @@
         
                 <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Favourite Music Bands / Artists">Iron Maid, DC/AC, Megablow, The Ill, Kung Fighters, System of a Revenge.</textarea>
+                        <textarea class="form-control" placeholder="Favourite Music Bands / Artists" name="txt_favorite_music">{{ $hobby->txt_favorite_music }}</textarea>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Favourite Books">The Crime of the Century, Egiptian Mythology 101, The Scarred Wizard, Lord of the Wings, Amongst Gods, The Oracle, A Tale of Air and Water.</textarea>
+                        <textarea class="form-control" placeholder="Favourite Books" name="txt_favorite_book">{{ $hobby->txt_favorite_book }}</textarea>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Favourite Writers">Martin T. Georgeston, Jhonathan R. Token, Ivana Rowle, Alexandria Platt, Marcus Roth. </textarea>
+                        <textarea class="form-control" placeholder="Favourite Writers" name="txt_favorite_writer">{{ $hobby->txt_favorite_writer }}</textarea>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Other Interests">Swimming, Surfing, Scuba Diving, Anime, Photography, Tattoos, Street Art.</textarea>
+                        <textarea class="form-control" placeholder="Other Interests" name="txt_other_interest">{{ $hobby->txt_other_interest }}</textarea>
                     </div>
         
                     <button class="btn btn-primary btn-lg full-width">Save all Changes</button>

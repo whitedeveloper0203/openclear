@@ -67,6 +67,7 @@ Route::post('change-password', 'Pages\Account\ChangePasswordController@store')->
 
 // Hobby Interest
 Route::get('/hobby-interest', 'Pages\Account\HobbyInterestController@index')->name('hobby-interest')->middleware('auth', 'profile.passed');
+Route::post('/hobby-interest', 'Pages\Account\HobbyInterestController@store')->name('hobby-interest')->middleware('auth', 'profile.passed');
 
 // Education
 Route::get('/education', 'Pages\Account\EducationController@index')->name('education')->middleware('auth', 'profile.passed');
