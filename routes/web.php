@@ -26,7 +26,13 @@ Route::get( '/callback/{service}', 'Auth\SocialAuthController@callback' );
 Route:: get( '/account-register', 'Auth\SocialAuthController@accountShow' )->name('account-register');
 Route:: post( '/account-register', 'Auth\SocialAuthController@accountRegister' );
 
-Route::get('/friends', 'Pages\FriendController@index')->name('friends')->middleware('auth', 'profile.passed');
+Route::group(['middleware' => ['auth', 'profile.passed']], function () {
+    Route::get('/friends', 'Pages\FriendController@index')->name('friends');
+    Route::get('/friends-search', 'Pages\FriendController@search')->name('search-friends');
+    // Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
+    // Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+});
+
 Route::get('/about', 'Pages\AboutController@index')->name('about')->middleware('auth', 'profile.passed');
 Route::get('/photo', 'Pages\PhotoController@index')->name('photo')->middleware('auth', 'profile.passed');
 Route::get('/video', 'Pages\VideoController@index')->name('video')->middleware('auth', 'profile.passed');

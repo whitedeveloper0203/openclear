@@ -44,4 +44,22 @@ class UsersPersonalInfo extends Model
     {
         return $this->belongsTo('App\City', 'city_id');
     }
+
+    public function getCountry()
+    {
+        $country = $this->country();
+        return $country ? $country->first()->name : '';
+    }
+
+    public function getState()
+    {
+        $state = $this->state();
+        return $state ? $state->first()->name : '';
+    }
+
+    public function getCity()
+    {
+        $city = $this->city();
+        return $city ? $city->first()->name : '';
+    }
 }

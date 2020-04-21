@@ -11392,3 +11392,21 @@ a.text-dark:focus {
   color: #ff5e3a !important;
 }
 
+.header-avatar-friend {
+  border-radius: 100%;
+  border: 2px solid #fff;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 92px;
+  height: 92px;
+  background-color: #FDFBEE;
+}
+
+.header-avatar-friend img {
+  width: 90px;
+}
+
+.friend-item .friend-header-thumb {
+  height: 122px;
+}
+

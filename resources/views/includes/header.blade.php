@@ -16,7 +16,7 @@
         </div>
     </form>
 
-    <a href="#" class="link-find-friend">Find Friends</a>
+    <a href="/friends-search" class="link-find-friend">Find Friends</a>
 
     <div class="control-block">
 
@@ -27,7 +27,7 @@
             <div class="more-dropdown more-with-triangle triangle-top-center">
                 <div class="ui-block-title ui-block-title-small">
                     <h6 class="title">FRIEND REQUESTS</h6>
-                    <a href="#">Find Friends</a>
+                    <a href="/friends-search">Find Friends</a>
                     <a href="#">Settings</a>
                 </div>
 
@@ -524,7 +524,7 @@
         <div class="mCustomScrollbar" data-mcs-theme="dark">
             <div class="ui-block-title ui-block-title-small">
                 <h6 class="title">FRIEND REQUESTS</h6>
-                <a href="#">Find Friends</a>
+                <a href="/friends-search">Find Friends</a>
                 <a href="#">Settings</a>
             </div>
             <ul class="notification-list friend-requests">
