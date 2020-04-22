@@ -29,8 +29,7 @@ Route:: post( '/account-register', 'Auth\SocialAuthController@accountRegister' )
 Route::group(['middleware' => ['auth', 'profile.passed']], function () {
     Route::get('/friends', 'Pages\FriendController@index')->name('friends');
     Route::get('/friends-search', 'Pages\FriendController@search')->name('search-friends');
-    // Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
-    // Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+    Route::post('/friends/add-friend', 'Pages\FriendController@addFriend')->name('add-friend');
 });
 
 Route::get('/about', 'Pages\AboutController@index')->name('about')->middleware('auth', 'profile.passed');

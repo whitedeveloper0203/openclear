@@ -1,5 +1,5 @@
 <!-- Scripts -->
-<!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+<script src="{{ asset('js/app.js') }}" defer></script>
 <!-- JS Scripts -->
 <script src="{{ asset('js/libs/jquery.appear.js') }}"></script>
 <script src="{{ asset('js/libs/jquery.mousewheel.js') }}"></script>
@@ -43,3 +43,4 @@
 <script src="{{ asset('Bootstrap/dist/js/bootstrap.bundle.js') }}"></script>
 
 <script src="{{ asset('js/pages/home/action.js') }}"></script>
+<script src="{{ asset('js/pages/home/notification.js') }}"></script>

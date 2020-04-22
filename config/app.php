@@ -171,7 +171,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         // Other service providers...
@@ -182,6 +182,7 @@ return [
         Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::class,
         Lakshmaji\Thumbnail\ThumbnailServiceProvider::class,
         // App\Providers\GoogleServiceProvider::class,
+        Hootlex\Friendships\FriendshipsServiceProvider::class,
     ],
 
     /*

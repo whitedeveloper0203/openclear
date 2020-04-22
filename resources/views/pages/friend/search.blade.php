@@ -30,7 +30,8 @@
 
 <div class="container">
 	<div class="row">
-        @foreach($users as $user)
+        @foreach ($users as $user)
+        @if (!$user->isAdmin())
 		<div class="col col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
 			<div class="ui-block">
 				
@@ -76,20 +77,22 @@
 											<div class="title">Friends</div>
 										</a>
 										<a href="#" class="friend-count-item">
-											<div class="h6">240</div>
+											<div class="h6">{{ $user->getPhotoCount() }}</div>
 											<div class="title">Photos</div>
 										</a>
 										<a href="#" class="friend-count-item">
-											<div class="h6">16</div>
+											<div class="h6">{{ $user->getVideoCount() }}</div>
 											<div class="title">Videos</div>
 										</a>
 									</div>
 									<div class="control-block-button" data-swiper-parallax="-100">
-										<a href="#" class="btn btn-control bg-blue">
-											<svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                        <a class="btn btn-control {{ Auth::user()->canSendFriendRequest($user) ? 'bg-blue btn-add-friend' : 'bg-secondary' }}" 
+                                            title="Add Friend" value="{{ $user->id }}">
+                                            
+                                            <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
 										</a>
 				
-										<a href="#" class="btn btn-control bg-purple">
+										<a href="#" class="btn btn-control bg-purple" value="{{ $user->id }}">
 											<svg class="olymp-chat---messages-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-chat---messages-icon"></use></svg>
 										</a>
 				
@@ -97,8 +100,8 @@
 								</div>
 				
 								<div class="swiper-slide">
-									<p class="friend-about" data-swiper-parallax="-500">
-										Hi!, I’m Marina and I’m a Community Manager for “Gametube”. Gamer and full-time mother.
+									<p class="friend-about text-center" data-swiper-parallax="-500">
+										{{ $user->getPersonalDescription() }}
 									</p>
 								</div>
 							</div>
@@ -111,6 +114,7 @@
                 <!-- ... end Friend Item -->			
             </div>
         </div>
+        @endif
         @endforeach
 	</div>
 </div>
@@ -118,3 +122,7 @@
 <!-- ... end Friends -->
 
 @endsection
+
+@push('scriptsAfter')
+	<script src="{{ asset('js/pages/friends/friend-request.js') }}"></script>
+@endpush

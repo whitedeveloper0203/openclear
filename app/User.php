@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Hootlex\Friendships\Traits\Friendable;
+use App\Traits\FriendableTempFix;
 
 class User extends Authenticatable
 {
     use Notifiable;
-    use Friendable;
+    use FriendableTempFix;
 
     /**
      * The attributes that are mass assignable.
@@ -91,5 +91,30 @@ class User extends Authenticatable
     {
         $headerMedia = $this->medias()->where('type', 'header')->first();
         return $headerMedia ? $headerMedia->url : 'img/friend1.jpg';
+    }
+
+    public function getPhotoCount()
+    {
+        return $this->medias()->where('type', 'photo')->get()->count();
+    }
+
+    public function getVideoCount()
+    {
+        return $this->medias()->where('type', 'video')->get()->count();
+    }
+
+    public function getPersonalDescription()
+    {
+        $personalInfo = $this->personalInfo();
+        return $personalInfo ? $personalInfo->description : 'No Description';
+    }
+
+    public function canSendFriendRequest($recipient)
+    {
+        $cannotSend = $this->isFriendWith($recipient) 
+        || $this->hasSentFriendRequestTo($recipient) 
+        || $this->isBlockedBy($recipient);
+
+        return !$cannotSend;
     }
 }

@@ -32,3 +32,8 @@ function localPhotos($user)
     $photos = $user->medias()->where('type', 'photo')->get();
     return $photos;
 }
+
+function unReadFriendRequest($user)
+{
+    return $user->unreadNotifications()->get()->toArray();
+}

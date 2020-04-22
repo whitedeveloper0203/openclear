@@ -22,7 +22,7 @@
 
         <div class="control-icon more has-items">
             <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-            <div class="label-avatar bg-blue">6</div>
+            <div class="label-avatar bg-blue">{{ count(unReadFriendRequest(Auth::user())) }}</div>
 
             <div class="more-dropdown more-with-triangle triangle-top-center">
                 <div class="ui-block-title ui-block-title-small">
@@ -32,14 +32,15 @@
                 </div>
 
                 <div class="mCustomScrollbar" data-mcs-theme="dark">
-                    <ul class="notification-list friend-requests">
+                    <ul class="notification-list friend-requests" id="notification-friend-requeset">
+
+                        @foreach (unReadFriendRequest(Auth::user()) as $notification)
                         <li>
                             <div class="author-thumb">
-                                <img src="img/avatar55-sm.jpg" alt="author">
+                                <img src="{{ $notification['data']['follower_avatar'] }}" alt="author">
                             </div>
                             <div class="notification-event">
-                                <a href="#" class="h6 notification-friend">Tamara Romanoff</a>
-                                <span class="chat-message-item">Mutual Friend: Sarah Hetfield</span>
+                                <a href="#" class="h6 notification-friend">{{ $notification['data']['follower_name'] }}</a>
                             </div>
                             <span class="notification-icon">
                                 <a href="#" class="accept-request">
@@ -55,13 +56,9 @@
                                 </a>
 
                             </span>
-
-                            <div class="more">
-                                <svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
-                            </div>
                         </li>
-
-                        <li>
+                        @endforeach
+                        {{-- <li>
                             <div class="author-thumb">
                                 <img src="img/avatar56-sm.jpg" alt="author">
                             </div>
@@ -132,7 +129,7 @@
                             <div class="more">
                                 <svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
                             </div>
-                        </li>
+                        </li> --}}
 
                     </ul>
                 </div>

@@ -11410,3 +11410,11 @@ a.text-dark:focus {
   height: 122px;
 }
 
+.control-icon .notification-list .author-thumb {
+  border-radius: 100%;
+}
+
+.control-icon .notification-list .author-thumb img {
+  width: 34px;
+}
+
