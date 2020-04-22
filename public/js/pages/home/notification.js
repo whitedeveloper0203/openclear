@@ -13,11 +13,35 @@ $(document).ready(function() {
 
     function makeNotification(notification) {
         var htmlElements = '';
-        
+
         if (notification.type == NOTIFICATION_TYPES.follow) {
             htmlElements = makeFriendRequestHtml(notification.data);
+            refreshUnReadCount(notification.type);
         }
         $('#notification-friend-requeset').prepend(htmlElements);
+    }
+
+    function refreshUnReadCount(type) {
+        if (type == NOTIFICATION_TYPES.follow) {
+            updateUnReadFriendlistAlert();    
+        }
+    }
+
+    function updateUnReadFriendlistAlert() {
+        $.ajax({
+            type: "GET",
+            url: siteUrl + "/notification/unread-friendlist-count",
+            success:function(res){               
+                if(res){
+                    var element = $('#unread-count-friendrequest');
+                    element.text(res.count);
+                    if (res.count > 0)
+                        element.removeClass('d-none');
+                    else
+                        element.addClass('d-none');    
+                }
+            }
+        });
     }
 
     function makeFriendRequestHtml(data) {
@@ -44,4 +68,19 @@ $(document).ready(function() {
                     </span>
                 </li>`;
     }
+
+    // Remove notification alerts if user enter mouse on the notification icon
+    $('#icon-friendlist-notification').mouseenter(function(){
+        if ($("#unread-count-friendrequest").text() != "0") {
+            $.ajax({
+                type: "GET",
+                url: siteUrl + "/notification/mark-as-read-friendlist",
+                success:function(res){               
+                    if (res.message == 'success'){
+                        updateUnReadFriendlistAlert();
+                    }
+                }
+            });
+        }
+    });
 });

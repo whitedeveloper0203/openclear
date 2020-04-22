@@ -57,11 +57,10 @@ class FriendController extends Controller
         $user = Auth::user();
         $recipient = User::find($userId);
 
-        if (!$user->isBlockedBy($recipient)) {
-
+        if ($user->canSendFriendRequest($recipient)) {
             $recipient->notify(new UserFollowed($user));
 
-            // $user->befriend($recipient);
+            $user->befriend($recipient);
             
             return response()->json([
                 'message' => 'Success!',
@@ -70,6 +69,42 @@ class FriendController extends Controller
         
         return response()->json([
             'message' => 'Failed!',
+        ]);
+    }
+
+    /**
+     * Get count of unread friend-request notifications
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function getUnReadFollowCount(Request $request)
+    {
+        $user = Auth::user();
+        $count = $user->unreadNotifications()->where('type', 'App\\Notifications\\UserFollowed')->get()->count();
+
+        return response()->json([
+            'count' => $count,
+        ]);
+    }
+
+    /**
+     * Mark as read follow notification
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function markAsReadFollowNotification(Request $request)
+    {
+        $user = Auth::user();
+        $notifications = $user->unreadNotifications()->where('type', 'App\\Notifications\\UserFollowed')->get();
+
+        foreach ($notifications as $notify) {
+            $notify->markAsRead();
+        }
+
+        return response()->json([
+            'message' => 'success',
         ]);
     }
 }

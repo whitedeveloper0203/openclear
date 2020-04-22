@@ -35,5 +35,19 @@ function localPhotos($user)
 
 function unReadFriendRequest($user)
 {
-    return $user->unreadNotifications()->get()->toArray();
+    return $user->unreadNotifications()
+                ->where('type', 'App\\Notifications\\UserFollowed')
+                ->get()
+                ->toArray();
+}
+
+function lastFriendRequestNotification($user, $limit)
+{   
+    return $user->notifications()
+                ->where('type', 'App\\Notifications\\UserFollowed')
+                ->orderBy('created_at', 'DESC')
+                ->take($limit)
+                ->get()
+                ->toArray();
+    
 }

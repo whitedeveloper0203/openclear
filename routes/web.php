@@ -30,6 +30,8 @@ Route::group(['middleware' => ['auth', 'profile.passed']], function () {
     Route::get('/friends', 'Pages\FriendController@index')->name('friends');
     Route::get('/friends-search', 'Pages\FriendController@search')->name('search-friends');
     Route::post('/friends/add-friend', 'Pages\FriendController@addFriend')->name('add-friend');
+    Route::get('/notification/unread-friendlist-count', 'Pages\FriendController@getUnReadFollowCount')->name('get-unread-friendlist-count');
+    Route::get('/notification/mark-as-read-friendlist', 'Pages\FriendController@markAsReadFollowNotification')->name('mark-as-read-friendlist');
 });
 
 Route::get('/about', 'Pages\AboutController@index')->name('about')->middleware('auth', 'profile.passed');

@@ -20,9 +20,11 @@
 
     <div class="control-block">
 
-        <div class="control-icon more has-items">
+        <div class="control-icon more has-items" id="icon-friendlist-notification">
             <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-            <div class="label-avatar bg-blue">{{ count(unReadFriendRequest(Auth::user())) }}</div>
+            <div class="label-avatar bg-blue {{ count(unReadFriendRequest(Auth::user())) ==0 ? 'd-none' : '' }}" id="unread-count-friendrequest">
+                {{ count(unReadFriendRequest(Auth::user())) }}
+            </div>
 
             <div class="more-dropdown more-with-triangle triangle-top-center">
                 <div class="ui-block-title ui-block-title-small">
@@ -34,7 +36,7 @@
                 <div class="mCustomScrollbar" data-mcs-theme="dark">
                     <ul class="notification-list friend-requests" id="notification-friend-requeset">
 
-                        @foreach (unReadFriendRequest(Auth::user()) as $notification)
+                        @foreach (lastFriendRequestNotification(Auth::user(), 5) as $notification)
                         <li>
                             <div class="author-thumb">
                                 <img src="{{ $notification['data']['follower_avatar'] }}" alt="author">
