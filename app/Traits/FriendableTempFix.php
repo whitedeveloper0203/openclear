@@ -113,4 +113,27 @@ trait FriendableTempFix
 
         return $deleted;
     }
+
+    /**
+     * @param Model $recipient
+     * @return mixed
+     */
+    public function hasDenied(Model $recipient)
+    {
+        $friendship = $this->getFriendship($recipient);
+        
+        if ($friendship)
+            return $friendship->whereStatus(Status::DENIED)->exists();
+        
+        return false;
+    }
+
+    /**
+     * @param Model $recipient
+     * @return mixed
+     */
+    public function isDeniedBy(Model $recipient)
+    {
+        return $recipient->hasDenied($this);
+    }
 }

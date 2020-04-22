@@ -45,7 +45,7 @@ $(document).ready(function() {
     }
 
     function makeFriendRequestHtml(data) {
-        return `<li>
+        return `<li class="notification-item">
                     <div class="author-thumb">
                         <img src="${data.follower_avatar}" alt="author">
                     </div>
@@ -53,18 +53,13 @@ $(document).ready(function() {
                         <a href="#" class="h6 notification-friend">${data.follower_name}</a>
                     </div>
                     <span class="notification-icon">
-                        <a href="#" class="accept-request">
-                            <span class="icon-add without-text">
-                                <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                            </span>
+                        <a href="javascript:void(0)" class="accept-request request-acc" value="${data.follower_id}">
+                            Accept
                         </a>
 
-                        <a href="#" class="accept-request request-del">
-                            <span class="icon-minus">
-                                <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                            </span>
+                        <a href="javascript:void(0)" class="accept-request request-del" value="${data.follower_id}">
+                            Deny
                         </a>
-
                     </span>
                 </li>`;
     }
@@ -83,4 +78,62 @@ $(document).ready(function() {
             });
         }
     });
+
+    // Accept friend on header notification
+    $('#notification-friend-requeset').delegate('.request-acc', 'click', function(){
+        const element = $(this);
+        const user_id = element.attr('value');
+
+        const data = {  
+            user_id: user_id,
+            _token : csrf_token 
+        };
+    
+        $.post( siteUrl + '/friends/accept-friend', data, function(response) {
+            // Log the response to the console
+            if (response.message == 'success') {
+                const parent = element.parent();
+                
+                element.remove();
+                parent.find('.request-del').remove();
+                parent.append('<span class="text-secondary">Accepted</span>');
+            }
+
+        }).fail(function(error) {
+            alert("Error!");
+        });
+    });
+    // $('#notification-friend-requeset .request-acc').click(function(){
+
+        
+    // });
+
+    // Deny friend on header notification
+    $('#notification-friend-requeset').delegate('.request-del', 'click', function(){
+        const element = $(this);
+        const user_id = element.attr('value');
+
+        const data = {  
+            user_id: user_id,
+            _token : csrf_token 
+        };
+    
+        $.post( siteUrl + '/friends/deny-friend', data, function(response) {
+            // Log the response to the console
+            if (response.message == 'success') {
+                const parent = element.parent();
+                
+                element.remove();
+                parent.find('.request-acc').remove();
+                parent.append('<span class="text-secondary">Denied</span>');
+            }
+
+        }).fail(function(error) {
+            alert("Error!");
+        });
+    });
+    // $('#notification-friend-requeset .request-del').click(function(){
+
+        
+    // });
 });

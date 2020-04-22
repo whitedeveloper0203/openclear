@@ -113,7 +113,8 @@ class User extends Authenticatable
     {
         $cannotSend = $this->isFriendWith($recipient) 
         || $this->hasSentFriendRequestTo($recipient) 
-        || $this->isBlockedBy($recipient);
+        || $this->isBlockedBy($recipient)
+        || $this->isDeniedBy($recipient);
 
         return !$cannotSend;
     }

@@ -11422,3 +11422,7 @@ a.text-dark:focus {
   padding: 10px 25px !important;
 }
 
+.control-icon .notification-list#notification-friend-requeset .notification-event {
+  width: 50% !important;
+}
+

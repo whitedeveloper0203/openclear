@@ -81,7 +81,10 @@ class FriendController extends Controller
     public function getUnReadFollowCount(Request $request)
     {
         $user = Auth::user();
-        $count = $user->unreadNotifications()->where('type', 'App\\Notifications\\UserFollowed')->get()->count();
+        $count = $user->unreadNotifications()
+                    ->where('type', 'App\\Notifications\\UserFollowed')
+                    ->get()
+                    ->count();
 
         return response()->json([
             'count' => $count,
@@ -102,6 +105,86 @@ class FriendController extends Controller
         foreach ($notifications as $notify) {
             $notify->markAsRead();
         }
+
+        return response()->json([
+            'message' => 'success',
+        ]);
+    }
+
+    /**
+     * Accept Friend
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function acceptFriendRequest(Request $request)
+    {
+        $userId = $request->input('user_id');
+
+        $user = Auth::user();
+        $sender = User::find($userId);
+
+        $user->acceptFriendRequest($sender);
+
+        return response()->json([
+            'message' => 'success',
+        ]);
+    }
+
+    /**
+     * Deny Friend
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function denyFriendRequest(Request $request)
+    {
+        $userId = $request->input('user_id');
+
+        $user = Auth::user();
+        $sender = User::find($userId);
+
+        $user->denyFriendRequest($sender);
+
+        return response()->json([
+            'message' => 'success',
+        ]);
+    }
+
+    /**
+     * Block Friend
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function blockFriend(Request $request)
+    {
+        $userId = $request->input('user_id');
+
+        $user = Auth::user();
+        $sender = User::find($userId);
+
+        $user->blockFriend($sender);
+
+        return response()->json([
+            'message' => 'success',
+        ]);
+    }
+
+    /**
+     * Remove Friend from Friendlists
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function removeFriend(Request $request)
+    {
+        $userId = $request->input('user_id');
+
+        $user = Auth::user();
+        $friend = User::find($userId);
+
+        $user->unfriend($friend);
 
         return response()->json([
             'message' => 'success',

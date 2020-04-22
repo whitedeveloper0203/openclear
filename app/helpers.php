@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+
 function alreadyImported($user, $media_id) 
 {   
     $media = $user->medias()->where('file_id', $media_id)->get();
@@ -50,4 +52,24 @@ function lastFriendRequestNotification($user, $limit)
                 ->get()
                 ->toArray();
     
+}
+
+function isSentFriendRequest($user, $sender_id)
+{
+    $sender = User::find($sender_id);
+    return $user->hasFriendRequestFrom($sender);
+}
+
+function statusFriendshipTwoUser($user, $sender_id)
+{
+    $sender = User::find($sender_id);
+    
+    if ($user->isFriendWith($sender))
+        return 'Accepted';
+    else if ($user->hasBlocked($sender))
+        return 'Blocked';
+    else if ($user->hasDenied($sender))
+        return 'Denied';
+
+    return '';
 }

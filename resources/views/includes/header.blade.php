@@ -36,8 +36,8 @@
                 <div class="mCustomScrollbar" data-mcs-theme="dark">
                     <ul class="notification-list friend-requests" id="notification-friend-requeset">
 
-                        @foreach (lastFriendRequestNotification(Auth::user(), 5) as $notification)
-                        <li>
+                        @foreach (lastFriendRequestNotification(Auth::user(), 7) as $notification)
+                        <li class="notification-item">
                             <div class="author-thumb">
                                 <img src="{{ $notification['data']['follower_avatar'] }}" alt="author">
                             </div>
@@ -45,18 +45,17 @@
                                 <a href="#" class="h6 notification-friend">{{ $notification['data']['follower_name'] }}</a>
                             </div>
                             <span class="notification-icon">
-                                <a href="#" class="accept-request">
-                                    <span class="icon-add without-text">
-                                        <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                    </span>
+                                @if (isSentFriendRequest(Auth::user(), $notification['data']['follower_id']))
+                                <a href="javascript:void(0)" class="accept-request request-acc" value="{{ $notification['data']['follower_id'] }}">
+                                    Accept
                                 </a>
 
-                                <a href="#" class="accept-request request-del">
-                                    <span class="icon-minus">
-                                        <svg class="olymp-happy-face-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
-                                    </span>
+                                <a href="javascript:void(0)" class="accept-request request-del" value="{{ $notification['data']['follower_id'] }}">
+                                    Deny
                                 </a>
-
+                                @else
+                                    <span class="text-secondary">{{ statusFriendshipTwoUser(Auth::user(), $notification['data']['follower_id']) }}</span>
+                                @endif
                             </span>
                         </li>
                         @endforeach
