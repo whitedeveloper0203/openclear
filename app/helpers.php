@@ -73,3 +73,22 @@ function statusFriendshipTwoUser($user, $sender_id)
 
     return '';
 }
+
+function lastNotifications($user, $limit)
+{   
+    return $user->notifications()
+                ->where('type', '!=' ,'App\\Notifications\\UserFollowed')
+                ->orderBy('created_at', 'DESC')
+                ->take($limit)
+                ->get()
+                ->toArray();
+    
+}
+
+function unReadNotifications($user)
+{
+    return $user->unreadNotifications()
+                ->where('type', '!=','App\\Notifications\\UserFollowed')
+                ->get()
+                ->toArray();
+}

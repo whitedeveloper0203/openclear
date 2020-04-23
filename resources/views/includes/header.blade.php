@@ -230,10 +230,12 @@
             </div>
         </div>
 
-        <div class="control-icon more has-items">
+        <div class="control-icon more has-items" id="icon-other-notification">
             <svg class="olymp-thunder-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-thunder-icon"></use></svg>
 
-            <div class="label-avatar bg-primary">8</div>
+            <div class="label-avatar bg-primary {{ count(unReadNotifications(Auth::user())) ==0 ? 'd-none' : '' }}" id="other-notification-count">
+                {{ count(unReadNotifications(Auth::user())) }}
+            </div>
 
             <div class="more-dropdown more-with-triangle triangle-top-center">
                 <div class="ui-block-title ui-block-title-small">
@@ -243,26 +245,29 @@
                 </div>
 
                 <div class="mCustomScrollbar" data-mcs-theme="dark">
-                    <ul class="notification-list">
+                    <ul class="notification-list" id="notification-other-requeset">
+                        
+                        @foreach (lastNotifications(Auth::user(), 7) as $notification)
                         <li>
                             <div class="author-thumb">
-                                <img src="img/avatar62-sm.jpg" alt="author">
+                                <img src="{{ $notification['data']['sender_avatar'] }}" alt="author">
                             </div>
                             <div class="notification-event">
-                                <div><a href="#" class="h6 notification-friend">Mathilda Brinker</a> commented on your new <a href="#" class="notification-link">profile status</a>.</div>
-                                <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
+                                <div><a href="#" class="h6 notification-friend">{{ $notification['data']['message'] }}</a>
+                                {{-- <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span> --}}
                             </div>
-                                <span class="notification-icon">
-                                    <svg class="olymp-comments-post-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
-                                </span>
+                            {{-- <span class="notification-icon">
+                                <svg class="olymp-comments-post-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
+                            </span>
 
                             <div class="more">
                                 <svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
                                 <svg class="olymp-little-delete"><use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
-                            </div>
+                            </div> --}}
                         </li>
+                        @endforeach
 
-                        <li class="un-read">
+                        {{-- <li class="un-read">
                             <div class="author-thumb">
                                 <img src="img/avatar63-sm.jpg" alt="author">
                             </div>
@@ -337,7 +342,7 @@
                                 <svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
                                 <svg class="olymp-little-delete"><use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
                             </div>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
 

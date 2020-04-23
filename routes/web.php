@@ -36,7 +36,9 @@ Route::group(['middleware' => ['auth', 'profile.passed']], function () {
     Route::post('/friends/remove-friend', 'Pages\FriendController@removeFriend')->name('remove-friend');
 
     Route::get('/notification/unread-friendlist-count', 'Pages\FriendController@getUnReadFollowCount')->name('get-unread-friendlist-count');
+    Route::get('/notification/unread-notification-count', 'Pages\FriendController@getUnReadNotificationCount')->name('get-unread-notification-count');
     Route::get('/notification/mark-as-read-friendlist', 'Pages\FriendController@markAsReadFollowNotification')->name('mark-as-read-friendlist');
+    Route::get('/notification/mark-as-read-notification', 'Pages\FriendController@markAsReadOtherNotification')->name('mark-as-read-notification');
 });
 
 Route::get('/about', 'Pages\AboutController@index')->name('about')->middleware('auth', 'profile.passed');

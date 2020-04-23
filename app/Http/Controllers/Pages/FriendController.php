@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Notifications\UserFollowed;
+use App\Notifications\UserFriendReaction;
+use Hootlex\Friendships\Status;
 
 class FriendController extends Controller
 {
@@ -92,6 +94,25 @@ class FriendController extends Controller
     }
 
     /**
+     * Get count of unread friend-request notifications
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function getUnReadNotificationCount(Request $request)
+    {
+        $user = Auth::user();
+        $count = $user->unreadNotifications()
+                    ->where('type','!=' ,'App\\Notifications\\UserFollowed')
+                    ->get()
+                    ->count();
+
+        return response()->json([
+            'count' => $count,
+        ]);
+    }
+
+    /**
      * Mark as read follow notification
      *
      * @param Request $request
@@ -101,6 +122,26 @@ class FriendController extends Controller
     {
         $user = Auth::user();
         $notifications = $user->unreadNotifications()->where('type', 'App\\Notifications\\UserFollowed')->get();
+
+        foreach ($notifications as $notify) {
+            $notify->markAsRead();
+        }
+
+        return response()->json([
+            'message' => 'success',
+        ]);
+    }
+
+    /**
+     * Mark as read follow notification
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function markAsReadOtherNotification(Request $request)
+    {
+        $user = Auth::user();
+        $notifications = $user->unreadNotifications()->where('type' ,'!=' ,'App\\Notifications\\UserFollowed')->get();
 
         foreach ($notifications as $notify) {
             $notify->markAsRead();
@@ -124,7 +165,12 @@ class FriendController extends Controller
         $user = Auth::user();
         $sender = User::find($userId);
 
+        // Accept Friend Request
         $user->acceptFriendRequest($sender);
+
+        // Send accepted notification to follower
+        $message = $this->generateMessage($user->fullName(), Status::ACCEPTED);
+        $sender->notify(new UserFriendReaction($user, $message));
 
         return response()->json([
             'message' => 'success',
@@ -189,5 +235,15 @@ class FriendController extends Controller
         return response()->json([
             'message' => 'success',
         ]);
+    }
+
+    protected function generateMessage($recipientName, $status) {
+
+        if ($status == Status::ACCEPTED)
+            return $recipientName.' has accepted your friend request';
+        else if ($status == Status::DENIED)
+            return $recipientName.' has denied your friend request';
+        else if ($status == Status::BLOCKED)
+            return $recipientName.' has blocked your friend request';
     }
 }

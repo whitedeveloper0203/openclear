@@ -1,5 +1,6 @@
 const NOTIFICATION_TYPES = {
     follow: 'App\\Notifications\\UserFollowed',
+    notification: 'App\\Notifications\\UserFriendReaction',
 };
 
 $(document).ready(function() {
@@ -17,13 +18,21 @@ $(document).ready(function() {
         if (notification.type == NOTIFICATION_TYPES.follow) {
             htmlElements = makeFriendRequestHtml(notification.data);
             refreshUnReadCount(notification.type);
+            $('#notification-friend-requeset').prepend(htmlElements);
         }
-        $('#notification-friend-requeset').prepend(htmlElements);
+        else if (notification.type == NOTIFICATION_TYPES.notification) {
+            htmlElements = makeNotificationHtml(notification.data);
+            refreshUnReadCount(notification.type);
+            $('#notification-other-requeset').prepend(htmlElements);
+        }
     }
 
     function refreshUnReadCount(type) {
         if (type == NOTIFICATION_TYPES.follow) {
             updateUnReadFriendlistAlert();    
+        }
+        else if (type == NOTIFICATION_TYPES.notification) {
+            updateUnReadOtherNotification();
         }
     }
 
@@ -34,6 +43,23 @@ $(document).ready(function() {
             success:function(res){               
                 if(res){
                     var element = $('#unread-count-friendrequest');
+                    element.text(res.count);
+                    if (res.count > 0)
+                        element.removeClass('d-none');
+                    else
+                        element.addClass('d-none');    
+                }
+            }
+        });
+    }
+
+    function updateUnReadOtherNotification() {
+        $.ajax({
+            type: "GET",
+            url: siteUrl + "/notification/unread-notification-count",
+            success:function(res){               
+                if(res){
+                    var element = $('#other-notification-count');
                     element.text(res.count);
                     if (res.count > 0)
                         element.removeClass('d-none');
@@ -64,6 +90,17 @@ $(document).ready(function() {
                 </li>`;
     }
 
+    function makeNotificationHtml(data) {
+        return `<li>
+                    <div class="author-thumb">
+                        <img src="${data['sender_avatar']}" alt="author">
+                    </div>
+                    <div class="notification-event">
+                        <div><a href="#" class="h6 notification-friend">${data['message']}</a>
+                    </div>
+                </li>`;
+    }
+
     // Remove notification alerts if user enter mouse on the notification icon
     $('#icon-friendlist-notification').mouseenter(function(){
         if ($("#unread-count-friendrequest").text() != "0") {
@@ -73,6 +110,20 @@ $(document).ready(function() {
                 success:function(res){               
                     if (res.message == 'success'){
                         updateUnReadFriendlistAlert();
+                    }
+                }
+            });
+        }
+    });
+
+    $('#icon-other-notification').mouseenter(function(){
+        if ($("#other-notification-count").text() != "0") {
+            $.ajax({
+                type: "GET",
+                url: siteUrl + "/notification/mark-as-read-notification",
+                success:function(res){               
+                    if (res.message == 'success'){
+                        updateUnReadOtherNotification();
                     }
                 }
             });
@@ -103,7 +154,7 @@ $(document).ready(function() {
             alert("Error!");
         });
     });
-    
+
     // Deny friend on header notification
     $('#notification-friend-requeset').delegate('.request-del', 'click', function(){
         const element = $(this);
