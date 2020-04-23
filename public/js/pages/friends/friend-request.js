@@ -1,5 +1,11 @@
-$('.btn-add-friend').click(function() {
+// $('.btn-add-friend').click(function() {
     
+// });
+
+$('.control-block-button').delegate('.btn-add-friend', 'click', function() {
+
+    const element = $(this);
+
     user_id = $(this).attr('value');
 
     const data = {  
@@ -9,7 +15,11 @@ $('.btn-add-friend').click(function() {
 
     $.post( siteUrl + '/friends/add-friend', data, function(response) {
         // Log the response to the console
-        console.log(response);
+        if (response.message == 'success') {
+            element.removeClass('bg-blue');
+            element.removeClass('btn-add-friend');
+            element.addClass('bg-secondary');
+        }
     }).fail(function(error) {
         
     });

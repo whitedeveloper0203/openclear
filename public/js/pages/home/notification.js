@@ -103,11 +103,7 @@ $(document).ready(function() {
             alert("Error!");
         });
     });
-    // $('#notification-friend-requeset .request-acc').click(function(){
-
-        
-    // });
-
+    
     // Deny friend on header notification
     $('#notification-friend-requeset').delegate('.request-del', 'click', function(){
         const element = $(this);
@@ -132,8 +128,4 @@ $(document).ready(function() {
             alert("Error!");
         });
     });
-    // $('#notification-friend-requeset .request-del').click(function(){
-
-        
-    // });
 });

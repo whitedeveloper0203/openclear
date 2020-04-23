@@ -63,12 +63,12 @@ class FriendController extends Controller
             $user->befriend($recipient);
             
             return response()->json([
-                'message' => 'Success!',
+                'message' => 'success',
             ]);
         }
         
         return response()->json([
-            'message' => 'Failed!',
+            'message' => 'failed',
         ]);
     }
 
