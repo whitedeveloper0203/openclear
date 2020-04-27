@@ -51,6 +51,8 @@ Route::post('/import-facebook/{service}', 'Pages\ImportController@importFacebook
 Route::get('/import-google', 'Pages\ImportController@google')->name('import-facebook')->middleware('auth', 'profile.passed');
 // Route::post('/import-facebook/{service}', 'Pages\ImportController@importFacebook')->middleware('auth', 'profile.passed');
 
+// Import Google friends
+Route::post('/import-google/friends-request', 'Pages\ImportController@sendGoogleFriendsRequest')->name('import-google-friends')->middleware('auth', 'profile.passed');
 // Import Local Data
 Route::post('/import/{type}', 'Pages\ImportController@importLocalMedia')->middleware('auth', 'profile.passed');
 Route::post('/import-header-photo', 'Pages\ImportController@importHeaderPhoto')->middleware('auth', 'profile.passed');

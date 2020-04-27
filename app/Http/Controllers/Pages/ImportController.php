@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\Mail;
 use App\Media;
 
 use Auth;
@@ -341,4 +341,28 @@ class ImportController extends Controller
 
         return $contacts;
     } 
+
+    /**
+     * Send Google Friends Request
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function sendGoogleFriendsRequest(Request $request)
+    {
+        $to_name = $request->input('f_name');
+        $to_email = $request->input('f_email');
+        $data = array('name'=>$to_name);
+
+        Mail::send('emails.friendrequest-mail', $data, function($message) use ($to_name, $to_email) {
+            
+            $message->to($to_email, $to_name)->subject('OpenClear Friend Request');
+            // $message->from('SENDER_EMAIL_ADDRESS','Test Mail');
+
+        });
+
+        return response()->json([
+            'message' => 'success',
+        ]);
+    }
 }

@@ -125,11 +125,11 @@
                     <div class="author-thumb">
                         <img src="img/avatar2-sm.jpg" alt="author">
                     </div>
-                    <div class="birthday-author-name">
-                        <a href="#" class="h6 author-name">{{ $friend['title'] }} </a>
-                        <div class="birthday-date">{{ $friend['email'] }}</div>
+                    <div class="birthday-author-name google-friend-container" style="width: 50%;">
+                        <a href="#" class="h6 author-name friend-name">{{ $friend['title'] }} </a>
+                        <div class="birthday-date friend-email">{{ $friend['email'] }}</div>
                     </div>
-                    <a href="#" class="btn btn-sm bg-blue">Request</a>
+                    <a href="javascript:void(0)" class="btn btn-sm bg-blue google-friend-request">Request</a>
                 </div>
             
             </div>
@@ -149,5 +149,5 @@
 @endpush
 
 @push('scriptsAfter')
-	<script src="{{ asset('js/pages/import/action.js') }}"></script>
+	<script src="{{ asset('js/pages/import/google-action.js') }}"></script>
 @endpush
