@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Pages\Account;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Auth;
+
 class NotificationController extends Controller
 {
     /**
@@ -23,6 +25,13 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        return view('pages.account.notification');
+        $user = Auth::user();
+
+        $notifications = $user->notifications()->orderBy('created_at', 'DESC')->get();
+
+        $data = [
+            'notifications' => $notifications,
+        ];
+        return view('pages.account.notification')->with($data);
     }
 }

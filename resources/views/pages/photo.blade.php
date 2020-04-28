@@ -1377,7 +1377,7 @@
 <!-- Window-popup Upload Photo -->
 
 <div class="modal fade" id="update-local-photo" tabindex="-1" role="dialog" aria-labelledby="update-local-photo" aria-hidden="true">
-	<div class="modal-dialog window-popup update-local-photo" role="document">
+	<div class="modal-dialog window-popup update-local-photo create-photo-album" role="document">
 		<div class="modal-content">
 			<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
 				<svg class="olymp-close-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-close-icon"></use></svg>

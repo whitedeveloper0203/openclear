@@ -12,25 +12,27 @@
     <!-- Notification List -->
     
     <ul class="notification-list">
+        @foreach ($notifications as $notification)
         <li>
             <div class="author-thumb">
-                <img src="img/avatar1-sm.jpg" alt="author">
+                <img src="{{ generateAvatarNotification($notification->data, $notification->type) }}" alt="author">
             </div>
             <div class="notification-event">
-                <a href="#" class="h6 notification-friend">Mathilda Brinker</a> commented on your new <a href="#" class="notification-link">profile status</a>.
+                <a href="#" class="h6 notification-friend">{{ generateNotificationMessage($notification->data, $notification->type) }}</a>
                 <span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
             </div>
             <span class="notification-icon">
-                                    <svg class="olymp-comments-post-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
-                                </span>
+                <svg class="olymp-comments-post-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-comments-post-icon"></use></svg>
+            </span>
     
             <div class="more">
                 <svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
                 <svg class="olymp-little-delete"><use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
             </div>
         </li>
+        @endforeach
     
-        <li class="un-read">
+        {{-- <li class="un-read">
             <div class="author-thumb">
                 <img src="img/avatar2-sm.jpg" alt="author">
             </div>
@@ -139,7 +141,7 @@
                 <svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
                 <svg class="olymp-little-delete"><use xlink:href="svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
             </div>
-        </li>
+        </li> --}}
     </ul>
     
     <!-- ... end Notification List -->
@@ -168,7 +170,7 @@
 @endsection
 
 @push('styles')
-	
+    <link href="{{ asset('css/account/setting.css') }}" rel="stylesheet">
 @endpush
 
 @push('scriptsAfter')

@@ -92,3 +92,19 @@ function unReadNotifications($user)
                 ->get()
                 ->toArray();
 }
+
+function generateNotificationMessage($data, $type)
+{
+    if ($type == 'App\Notifications\UserFollowed')
+        return $data['follower_name'].' sent friend request';
+    else if ($type == 'App\Notifications\UserFriendReaction')
+        return $data['message'];
+}
+
+function generateAvatarNotification($data, $type)
+{
+    if ($type == 'App\Notifications\UserFollowed')
+        return $data['follower_avatar'];
+    else if ($type == 'App\Notifications\UserFriendReaction')
+        return $data['sender_avatar'];
+}

@@ -1,0 +1,13 @@
+.author-thumb {
+    img {
+        width: 40px;
+    }
+}
+.notification-list 
+{
+    .author-thumb
+    {
+        overflow: hidden;
+        border-radius: 100%;
+    }
+}

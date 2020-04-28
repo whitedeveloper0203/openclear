@@ -76,7 +76,9 @@
 				
 					<div class="ui-block-title">
 						<a href="/notification" class="h6 title">Notifications</a>
-						<a href="#" class="items-round-little bg-primary">8</a>
+						<a href="#" class="items-round-little bg-primary {{ count(unReadNotifications(Auth::user())) ==0 ? 'd-none' : '' }}">
+							{{ count(unReadNotifications(Auth::user())) }}
+						</a>
 					</div>
 					<div class="ui-block-title">
 						<a href="/chat-message" class="h6 title">Chat / Messages</a>
