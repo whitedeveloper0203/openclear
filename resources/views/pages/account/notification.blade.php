@@ -151,7 +151,7 @@
 
 <!-- Pagination -->
 
-<nav aria-label="Page navigation">
+{{-- <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
         <li class="page-item disabled">
             <a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -165,7 +165,7 @@
             <a class="page-link" href="#">Next</a>
         </li>
     </ul>
-</nav>
+</nav> --}}
 
 @endsection
 

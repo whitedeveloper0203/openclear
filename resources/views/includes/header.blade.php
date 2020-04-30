@@ -135,7 +135,7 @@
                     </ul>
                 </div>
 
-                <a href="#" class="view-all bg-blue">Check all your Events</a>
+                <a href="/notification" class="view-all bg-blue">Check all your Events</a>
             </div>
         </div>
 
@@ -346,7 +346,7 @@
                     </ul>
                 </div>
 
-                <a href="#" class="view-all bg-primary">View All Notifications</a>
+                <a href="/notification" class="view-all bg-primary">View All Notifications</a>
             </div>
         </div>
 
